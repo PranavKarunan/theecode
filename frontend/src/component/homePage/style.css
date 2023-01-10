@@ -1,0 +1,57 @@
+.header {
+  display: flex;
+  background-color: aqua;
+  padding: 20px;
+  border-bottom: 2px solid black;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.header button {
+  margin: 0;
+  padding: 10px;
+  border-radius: 10px;
+  height: 50px;
+}
+
+.Products_form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  border: 2px solid black;
+  border-radius: 20px;
+  min-width: 600px;
+  min-height: 500px;
+}
+
+.InputForm {
+  width: 100%;
+  height: calc(100vh - 100px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Products_form input {
+  padding: 25px;
+  height: 50px;
+  border: 2px solid black;
+  border-radius: 10px;
+  width: 300px;
+  display: flex;
+  gap: 10px;
+}
+
+.button_submit {
+  color: white;
+  border-radius: 10px;
+  padding: 10px 20px;
+  background-color: black;
+  border: 2px solid black;
+}
+
+.form{
+  display: flex;
+  flex-direction: column;
+}
