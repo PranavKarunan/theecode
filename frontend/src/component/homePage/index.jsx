@@ -1,17 +1,19 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addProduct } from "../../functions/user";
+import { addProduct } from "../../functions/user.js";
 import "./style.css";
 
 export default function Home() {
   const userId = useSelector((state) => state.user.user.userId);
+  const token = useSelector((state) => state.user.user.token);
   const [show, setShow] = useState(false);
   const [name, setName] = useState("");
   const [category, setCategory] = useState("");
 
   function handleSubmit(event) {
     event.preventDefault();
-    addProduct({ name, category, userId });
+    addProduct({ name, category, userId,token });
+
   }
 
   return (

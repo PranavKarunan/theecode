@@ -3,24 +3,22 @@ import LoginImg from "../Assets/login.jpg";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
-import { useSelector,useDispatch } from "react-redux";
-import  userReducer, { login }  from "../redux/reducer/userReducer";
+import { useSelector, useDispatch } from "react-redux";
+import userReducer, { login } from "../redux/reducer/userReducer";
 import { useNavigate } from "react-router-dom";
 
-
 const Login = () => {
-
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const initialValues = {
     email: "",
     password: "",
   };
 
-const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const [formData, setFormdata] = useState(initialValues);
-const userData = useSelector(state=>state.SAVE_USER_DETAILS)
+  const userData = useSelector((state) => state.SAVE_USER_DETAILS);
 
-console.log("userData" ,userData)
+  console.log("userData", userData);
   const formik = useFormik({
     initialValues: initialValues,
     validationSchema: Yup.object({
@@ -33,21 +31,24 @@ console.log("userData" ,userData)
     onSubmit: (values) => {
       setFormdata(values);
       submitData();
-      
     },
   });
 
   const submitData = async () => {
-    console.log(formData)
+    console.log(formData);
     const res = await axios.post("http://localhost:5000/auth/login", formData);
-    const userId = res.data.details._id
-    console.log(userId)
-    if(res.statusText === "OK"){
-      navigate("/home")
-      dispatch(login({
-        userId:userId
-      }))
-      
+    console.log(res);
+    const userId = res.data.details._id;
+    const token = res.data.details.token
+    console.log(userId);
+    if (res.statusText === "OK") {
+      navigate("/home");
+      dispatch(
+        login({
+          userId: userId,
+          token: token
+        })
+      );
     }
   };
 
@@ -61,7 +62,9 @@ console.log("userData" ,userData)
           className="max-w-[400px] w-full mx-auto bg-white p-4"
           onSubmit={formik.handleSubmit}
         >
-          <h1 className="text-xl font-bold text-center py-6 ">Product management</h1>
+          <h1 className="text-xl font-bold text-center py-6 ">
+            Product management
+          </h1>
           <div className="flex flex-col py-2">
             <label>UserName</label>
             <input
@@ -99,7 +102,6 @@ console.log("userData" ,userData)
           >
             Sign In
           </button>
-          
         </form>
       </div>
     </div>

@@ -1,10 +1,12 @@
 import axios from "axios";
-export const addProduct = async (values, token) => {
+export const addProduct = async (values) => {
+  const token = values.token
   try {
     const { data } = await axios.post(
-      `${process.env.REACT_APP_BACKEND_URL}/addProudct`,
+      "http://localhost:5000/product/createProduct",
+      // `${process.env.REACT_APP_BACKEND_URL}/product/createProudct`,
       {
-       values
+        values,
       },
       {
         headers: {
